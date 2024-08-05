@@ -1,0 +1,15 @@
+{
+    "name": "@jersey/test",
+    "version": "0.0.2",
+    "exports": {
+        ".": "./src/mod.ts",
+        "./client": "./src/client.ts",
+        "./bonfire": "./src/bonfire/mod.ts",
+        "./delta": "./src/delta/mod.ts",
+        "./media": "./src/media/mod.ts"
+    },
+    "exclude": [
+        "scripts"
+    ],
+    "lock": false
+}
