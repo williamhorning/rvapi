@@ -25,12 +25,15 @@ export type UserProfile = components['schemas']['UserProfile'];
 export type Channel = components['schemas']['Channel'];
 export type OverrideField = components['schemas']['OverrideField'];
 export type MutualResponse = components['schemas']['MutualResponse'];
-export type DataSendFriendRequest = components['schemas']['DataSendFriendRequest'];
-export type Bot = components['schemas']['Bot'];
+export type DataSendFriendRequest =
+	components['schemas']['DataSendFriendRequest'];
+export type BotWithUserResponse = components['schemas']['BotWithUserResponse'];
 export type DataCreateBot = components['schemas']['DataCreateBot'];
-export type InviteBotDestination = components['schemas']['InviteBotDestination'];
+export type InviteBotDestination =
+	components['schemas']['InviteBotDestination'];
 export type PublicBot = components['schemas']['PublicBot'];
 export type FetchBotResponse = components['schemas']['FetchBotResponse'];
+export type Bot = components['schemas']['Bot'];
 export type OwnedBotsResponse = components['schemas']['OwnedBotsResponse'];
 export type DataEditBot = components['schemas']['DataEditBot'];
 export type FieldsBot = components['schemas']['FieldsBot'];
@@ -38,9 +41,11 @@ export type DataEditChannel = components['schemas']['DataEditChannel'];
 export type FieldsChannel = components['schemas']['FieldsChannel'];
 export type Invite = components['schemas']['Invite'];
 export type Message = components['schemas']['Message'];
+export type Member = components['schemas']['Member'];
+export type MemberCompositeKey = components['schemas']['MemberCompositeKey'];
+export type ISO8601_Timestamp = components['schemas']['ISO8601 Timestamp'];
 export type MessageWebhook = components['schemas']['MessageWebhook'];
 export type SystemMessage = components['schemas']['SystemMessage'];
-export type ISO8601_Timestamp = components['schemas']['ISO8601 Timestamp'];
 export type Embed = components['schemas']['Embed'];
 export type Special = components['schemas']['Special'];
 export type LightspeedType = components['schemas']['LightspeedType'];
@@ -55,30 +60,35 @@ export type DataMessageSend = components['schemas']['DataMessageSend'];
 export type ReplyIntent = components['schemas']['ReplyIntent'];
 export type SendableEmbed = components['schemas']['SendableEmbed'];
 export type BulkMessageResponse = components['schemas']['BulkMessageResponse'];
-export type Member = components['schemas']['Member'];
-export type MemberCompositeKey = components['schemas']['MemberCompositeKey'];
 export type MessageSort = components['schemas']['MessageSort'];
 export type DataMessageSearch = components['schemas']['DataMessageSearch'];
 export type DataEditMessage = components['schemas']['DataEditMessage'];
 export type OptionsBulkDelete = components['schemas']['OptionsBulkDelete'];
 export type DataCreateGroup = components['schemas']['DataCreateGroup'];
-export type LegacyCreateVoiceUserResponse = components['schemas']['LegacyCreateVoiceUserResponse'];
-export type DataSetRolePermissions = components['schemas']['DataSetRolePermissions'];
+export type LegacyCreateVoiceUserResponse =
+	components['schemas']['LegacyCreateVoiceUserResponse'];
+export type DataSetRolePermissions =
+	components['schemas']['DataSetRolePermissions'];
 export type Override = components['schemas']['Override'];
-export type DataDefaultChannelPermissions = components['schemas']['DataDefaultChannelPermissions'];
+export type DataDefaultChannelPermissions =
+	components['schemas']['DataDefaultChannelPermissions'];
 export type Webhook = components['schemas']['Webhook'];
 export type CreateWebhookBody = components['schemas']['CreateWebhookBody'];
-export type CreateServerLegacyResponse = components['schemas']['CreateServerLegacyResponse'];
+export type CreateServerLegacyResponse =
+	components['schemas']['CreateServerLegacyResponse'];
 export type Server = components['schemas']['Server'];
 export type Category = components['schemas']['Category'];
-export type SystemMessageChannels = components['schemas']['SystemMessageChannels'];
+export type SystemMessageChannels =
+	components['schemas']['SystemMessageChannels'];
 export type Role = components['schemas']['Role'];
 export type DataCreateServer = components['schemas']['DataCreateServer'];
 export type FetchServerResponse = components['schemas']['FetchServerResponse'];
 export type DataEditServer = components['schemas']['DataEditServer'];
 export type FieldsServer = components['schemas']['FieldsServer'];
-export type DataCreateServerChannel = components['schemas']['DataCreateServerChannel'];
-export type LegacyServerChannelType = components['schemas']['LegacyServerChannelType'];
+export type DataCreateServerChannel =
+	components['schemas']['DataCreateServerChannel'];
+export type LegacyServerChannelType =
+	components['schemas']['LegacyServerChannelType'];
 export type AllMemberResponse = components['schemas']['AllMemberResponse'];
 export type MemberResponse = components['schemas']['MemberResponse'];
 export type DataMemberEdit = components['schemas']['DataMemberEdit'];
@@ -92,8 +102,10 @@ export type NewRoleResponse = components['schemas']['NewRoleResponse'];
 export type DataCreateRole = components['schemas']['DataCreateRole'];
 export type DataEditRole = components['schemas']['DataEditRole'];
 export type FieldsRole = components['schemas']['FieldsRole'];
-export type DataSetServerRolePermission = components['schemas']['DataSetServerRolePermission'];
-export type DataPermissionsValue = components['schemas']['DataPermissionsValue'];
+export type DataSetServerRolePermission =
+	components['schemas']['DataSetServerRolePermission'];
+export type DataPermissionsValue =
+	components['schemas']['DataPermissionsValue'];
 export type Emoji = components['schemas']['Emoji'];
 export type EmojiParent = components['schemas']['EmojiParent'];
 export type InviteResponse = components['schemas']['InviteResponse'];
@@ -105,7 +117,8 @@ export type ContentReportReason = components['schemas']['ContentReportReason'];
 export type UserReportReason = components['schemas']['UserReportReason'];
 export type Authifier_Error = components['schemas']['Authifier Error'];
 export type DataCreateAccount = components['schemas']['DataCreateAccount'];
-export type DataResendVerification = components['schemas']['DataResendVerification'];
+export type DataResendVerification =
+	components['schemas']['DataResendVerification'];
 export type DataAccountDeletion = components['schemas']['DataAccountDeletion'];
 export type AccountInfo = components['schemas']['AccountInfo'];
 export type DataChangePassword = components['schemas']['DataChangePassword'];
@@ -113,7 +126,8 @@ export type DataChangeEmail = components['schemas']['DataChangeEmail'];
 export type ResponseVerify = components['schemas']['ResponseVerify'];
 export type MFATicket = components['schemas']['MFATicket'];
 export type DataPasswordReset = components['schemas']['DataPasswordReset'];
-export type DataSendPasswordReset = components['schemas']['DataSendPasswordReset'];
+export type DataSendPasswordReset =
+	components['schemas']['DataSendPasswordReset'];
 export type ResponseLogin = components['schemas']['ResponseLogin'];
 export type WebPushSubscription = components['schemas']['WebPushSubscription'];
 export type MFAMethod = components['schemas']['MFAMethod'];
@@ -125,6 +139,7 @@ export type MultiFactorStatus = components['schemas']['MultiFactorStatus'];
 export type ResponseTotpSecret = components['schemas']['ResponseTotpSecret'];
 export type DataHello = components['schemas']['DataHello'];
 export type DataOnboard = components['schemas']['DataOnboard'];
-export type OptionsFetchSettings = components['schemas']['OptionsFetchSettings'];
+export type OptionsFetchSettings =
+	components['schemas']['OptionsFetchSettings'];
 export type ChannelUnread = components['schemas']['ChannelUnread'];
 export type ChannelCompositeKey = components['schemas']['ChannelCompositeKey'];

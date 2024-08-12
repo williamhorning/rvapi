@@ -1,0 +1,11 @@
+{
+	"name": "@jersey/revolt-api-types",
+	"version": "0.7.14",
+	"exports": "./src/mod.ts",
+	"publish": {
+		"exclude": ["./scripts"]
+	},
+	"lint": {
+		"exclude": ["./scripts"]
+	}
+}

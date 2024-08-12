@@ -1,0 +1,9 @@
+{
+	"name": "@jersey/rvapi",
+	"version": "0.0.0-do",
+	"exports": "./src/mod.ts",
+	"imports": {
+		"@denosaurs/event": "jsr:@denosaurs/event@^2.0.2",
+		"@jersey/revolt-api-types": "jsr:@jersey/revolt-api-types"
+	}
+}

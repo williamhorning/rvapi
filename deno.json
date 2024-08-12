@@ -1,15 +1,27 @@
 {
-    "name": "@jersey/test",
-    "version": "0.0.2",
-    "exports": {
-        ".": "./src/mod.ts",
-        "./client": "./src/client.ts",
-        "./bonfire": "./src/bonfire/mod.ts",
-        "./delta": "./src/delta/mod.ts",
-        "./media": "./src/media/mod.ts"
-    },
-    "exclude": [
-        "scripts"
-    ],
-    "lock": false
+	"fmt": {
+		"lineWidth": 80,
+		"proseWrap": "always",
+		"semiColons": true,
+		"useTabs": true,
+		"singleQuote": true
+	},
+	"lint": {
+		"rules": {
+			"include": [
+				"ban-untagged-todo",
+				"default-param-last",
+				"eqeqeq",
+				"no-eval",
+				"no-external-import",
+				"triple-slash-reference",
+				"verbatim-module-syntax"
+			]
+		}
+	},
+	"workspace": [
+		"./packages/revolt-api-types",
+		"./packages/rvapi"
+	],
+	"lock": false
 }
