@@ -1,4 +1,4 @@
-![RVAPI logo](https://raw.githubusercontent.com/williamhorning/rvapi/main/assets/logo.svg)
+![RVAPI](https://raw.githubusercontent.com/williamhorning/rvapi/main/assets/logo.svg)
 
 # @jersey/revolt-api-types
 

@@ -1,0 +1,25 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+permissions:
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # auth w/JSR
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: setup deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.45.5
+      - name: publish to jsr
+        run: deno publish
