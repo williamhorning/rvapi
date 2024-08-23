@@ -109,7 +109,7 @@ export class MediaServices {
 		const data = await resp.json();
 
 		if (!resp.ok || data.type) {
-			throw new Error('upload file', { cause: resp });
+			throw new MediaError('upload file', data.type);
 		}
 
 		return data.id;
