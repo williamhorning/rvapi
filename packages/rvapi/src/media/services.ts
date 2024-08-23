@@ -104,13 +104,12 @@ export class MediaServices {
 		const resp = await fetch(`${this.autumn.url}/${tag}`, {
 			method: 'POST',
 			body: form,
-			headers: { 'Content-Type': 'multipart/form-data' },
 		});
 
 		const data = await resp.json();
 
-		if (!resp.ok || resp.type) {
-			throw new MediaError('upload file', data.type);
+		if (!resp.ok || data.type) {
+			throw new Error('upload file', { cause: resp });
 		}
 
 		return data.id;
