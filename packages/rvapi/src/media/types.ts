@@ -26,12 +26,12 @@ export interface download_options {
 /** an error with a request to january or autumn */
 export class MediaError extends Error {
 	/** the cause of the error from the api */
-	cause: string;
+	override cause: string;
 
 	/** create an error */
 	constructor(action: string, cause: string) {
 		super(`Failed to ${action}: ${cause}`);
-		this.name = 'JanuaryError';
+		this.name = 'MediaError';
 		this.cause = cause;
 	}
 }

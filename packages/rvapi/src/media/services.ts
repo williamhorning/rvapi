@@ -44,7 +44,7 @@ export class MediaServices {
 		const proxy_url = `https://${this.january.url}/proxy?url=${
 			encodeURIComponent(url)
 		}`;
-		const resp = await fetch(proxy_url, { method: 'GET' });
+		const resp = await fetch(proxy_url);
 		if (!resp.ok || resp.headers.get('Content-Type') === 'application/json') {
 			throw new MediaError('get proxy', (await resp.json()).type);
 		}
@@ -78,7 +78,7 @@ export class MediaServices {
 			download_url.searchParams.set('width', options.width.toString());
 		}
 
-		const resp = await fetch(download_url.toString(), { method: 'GET' });
+		const resp = await fetch(download_url);
 
 		if (!resp.ok) {
 			throw new MediaError('download file', (await resp.json()).type);

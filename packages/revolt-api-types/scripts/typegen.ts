@@ -1,3 +1,4 @@
+// deno-lint-ignore no-external-import
 import openapi from 'npm:openapi-typescript@6.7.6';
 
 const schema_url = 'https://api.revolt.chat/openapi.json';
