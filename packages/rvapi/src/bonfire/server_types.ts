@@ -26,7 +26,7 @@ interface Authenticated {
 
 interface Bulk {
 	type: 'Bulk';
-	messages: ServerMessage[];
+	v: ServerMessage[];
 }
 
 interface Pong {

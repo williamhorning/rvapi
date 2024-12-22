@@ -40,7 +40,7 @@ export class Bonfire extends EventEmitter<
 	 */
 	private handle_message(message: ServerMessage) {
 		if (message.type === 'Bulk') {
-			message.messages.forEach((m) => this.handle_message(m));
+			message.v.forEach((m) => this.handle_message(m));
 		}
 		// deno-lint-ignore no-explicit-any
 		this.emit(message.type, message as any);
