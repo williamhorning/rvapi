@@ -7,11 +7,14 @@ export class MediaServices {
 	private january: Feature;
 	/** autumn config */
 	private autumn: Feature;
+	/** the token to use */
+	private token?: string;
 
 	/** create an instance of MediaServices */
-	constructor(january: Feature, autumn: Feature) {
+	constructor(january: Feature, autumn: Feature, token?: string) {
 		this.january = january;
 		this.autumn = autumn;
+		this.token = token;
 	}
 
 	/**
@@ -98,12 +101,19 @@ export class MediaServices {
 			throw new MediaError('upload file', 'AutumnDisabled');
 		}
 
+		if (!this.token) {
+			throw new MediaError('upload file', 'NoToken');
+		}
+
 		const form = new FormData();
 		form.append('file', file);
 
 		const resp = await fetch(`${this.autumn.url}/${tag}`, {
 			method: 'POST',
 			body: form,
+			headers: {
+				"X-Bot-Token": this.token,
+			}
 		});
 
 		const data = await resp.json();

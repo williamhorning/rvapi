@@ -66,6 +66,7 @@ export function createClient(opts: ClientOptions): Client {
 				enabled: true,
 				url: 'https://autumn.revolt.chat',
 			},
+			opts.token,
 		),
 		opts,
 		request: createRequest(opts.api_url || 'https://api.revolt.chat', {
