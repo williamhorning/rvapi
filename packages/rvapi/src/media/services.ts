@@ -112,8 +112,8 @@ export class MediaServices {
 			method: 'POST',
 			body: form,
 			headers: {
-				"X-Bot-Token": this.token,
-			}
+				'X-Bot-Token': this.token,
+			},
 		});
 
 		const data = await resp.json();

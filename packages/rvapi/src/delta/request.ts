@@ -33,7 +33,9 @@ export function createRequest(
 			? undefined
 			: JSON.stringify(body);
 
-		const res = await fetch(`${base_url}${path}?${query.toString()}`, {
+		const query_string = query.size ? `?${query.toString()}` : '';
+
+		const res = await fetch(`${base_url}${path}${query_string}`, {
 			method,
 			headers,
 			body: req_body,

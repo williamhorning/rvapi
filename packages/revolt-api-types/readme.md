@@ -3,16 +3,15 @@
 # @jersey/revolt-api-types
 
 revolt-api-types is a package providing types for the
-[Revolt](https://revolt.chat) protocol. this is used by
-[rvapi](https://jsr.io/@jersey/rvapi) for providing up-to-date types and openapi
-codegen.
+[Revolt](https://revolt.chat) protocol. currently, we provide types for Revolt
+0.8.x
 
 ## usage
 
 you can use the types in this package by doing the following;
 
 ```ts
-import type { DataMessageSend } from '@jersey/revolt-api-types';
+import type { DataMessageSend } from 'jsr:@jersey/revolt-api-types';
 
 let message: DataMessageSend = {
 	embeds: [{

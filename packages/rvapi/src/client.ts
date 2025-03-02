@@ -1,36 +1,37 @@
-import { Bonfire } from './bonfire/client.ts';
-import { MediaServices } from './media/mod.ts';
-import { createRequest, type request } from './delta/mod.ts';
 import type { Feature } from '@jersey/revolt-api-types';
+import { Bonfire } from './bonfire/client.ts';
+import { createRequest, type request } from './delta/mod.ts';
+import { MediaServices } from './media/mod.ts';
 
 /** options used by the clients */
 export interface ClientOptions {
 	/**
-	 * the api url to use,
-	 * this defaults to https://api.revolt.chat
+	 * the api url to use
+	 * @default 'https://api.revolt.chat'
 	 */
 	api_url?: string;
 	/**
 	 * extra headers to use for the api
+	 * @default {}
 	 */
 	api_headers?: Record<string, string>;
 	/**
-	 * the configuration to use for autumn,
-	 * defaults to https://autumn.revolt.chat
+	 * the configuration to use for autumn
+	 * @default { enabled: true, url: 'https://autumn.revolt.chat' }
 	 */
 	autumn?: Feature;
 	/**
-	 * the configuration to use for january,
-	 * defaults to https://jan.revolt.chat
+	 * the configuration to use for january
+	 * @default { enabled: true, url: 'https://jan.revolt.chat' }
 	 */
 	january?: Feature;
 	/**
-	 * the token to use for authentication against the api
+	 * the token to use for authentication against the api (required)
 	 */
 	token: string;
 	/**
-	 * the websocket url to use,
-	 * defaults to wss://ws.revolt.chat
+	 * the websocket url to use
+	 * @default 'wss://ws.revolt.chat'
 	 */
 	ws_url?: string;
 }
@@ -41,8 +42,6 @@ export interface Client {
 	bonfire: Bonfire;
 	/** access to media services */
 	media: MediaServices;
-	/** the options used by the client */
-	opts: ClientOptions;
 	/** make a request against the api */
 	request: request;
 }
@@ -68,12 +67,11 @@ export function createClient(opts: ClientOptions): Client {
 			},
 			opts.token,
 		),
-		opts,
-		request: createRequest(opts.api_url || 'https://api.revolt.chat', {
+		request: createRequest(opts.api_url || 'https://api.revolt.chat/0.8', {
 			'X-Bot-Token': opts.token,
 			...opts.api_headers,
 		}),
 	};
-	setInterval(() => client.bonfire.ping(), 30000);
+	setInterval(() => client.bonfire.ping(), 30000); // TODO(jersey): move this to bonfire
 	return client;
 }

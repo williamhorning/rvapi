@@ -51,6 +51,7 @@ export class Bonfire extends EventEmitter<
 	 * @param data the message to send
 	 */
 	send(data: ClientMessage) {
+		if (this.socket.readyState !== WebSocket.OPEN) return;
 		this.socket.send(JSON.stringify(data));
 	}
 

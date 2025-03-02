@@ -1,6 +1,6 @@
 {
 	"name": "@jersey/revolt-api-types",
-	"version": "0.7.14",
+	"version": "0.8.3",
 	"exports": "./src/mod.ts",
 	"publish": {
 		"exclude": ["./scripts"]

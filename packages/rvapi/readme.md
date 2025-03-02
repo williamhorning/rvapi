@@ -5,7 +5,7 @@
 ## Example
 
 ```ts
-import { createClient } from '@jersey/rvapi';
+import { createClient } from 'jsr:@jersey/rvapi';
 
 const client = createClient({
 	token: '<insert token>',
