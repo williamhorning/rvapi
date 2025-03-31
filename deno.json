@@ -21,7 +21,8 @@
 	},
 	"workspace": [
 		"./packages/revolt-api-types",
-		"./packages/rvapi"
+		"./packages/rvapi",
+		"./packages/openapi"
 	],
 	"lock": false
 }

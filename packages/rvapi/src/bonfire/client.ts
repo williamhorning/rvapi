@@ -9,6 +9,9 @@ export class Bonfire extends EventEmitter<
 	/** the websocket used by the client */
 	private socket: WebSocket;
 
+	/** the interval for pinging the server */
+	private ping_interval?: number;
+
 	/**
 	 * connect to bonfire
 	 * @param opts the options for bonfire
@@ -24,6 +27,9 @@ export class Bonfire extends EventEmitter<
 			this.handle_message(JSON.parse(event.data));
 		};
 		this.socket.onclose = (event) => {
+			if (this.ping_interval) {
+				clearInterval(this.ping_interval);
+			}
 			this.emit('socket_close', { code: event.code, reason: event.reason });
 		};
 		this.socket.onerror = () => {
@@ -31,6 +37,7 @@ export class Bonfire extends EventEmitter<
 		};
 		this.socket.onopen = () => {
 			this.emit('socket_open');
+			this.ping_interval = setInterval(() => this.ping(), 30000);
 		};
 	}
 

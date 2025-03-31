@@ -1,6 +1,7 @@
 {
 	"name": "@jersey/rvapi",
 	"version": "0.0.7",
+	"license": "MIT",
 	"exports": "./src/mod.ts",
 	"imports": {
 		"@denosaurs/event": "jsr:@denosaurs/event@^2.0.2",

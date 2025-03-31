@@ -1,6 +1,6 @@
-import { pathResolve } from '@jersey/revolt-api-types';
+import { pathResolve } from './params.ts';
 
-export function path_name(path: string) {
+export function path_name(path: string): string | undefined {
 	const segments = path.split('/');
 
 	const list =

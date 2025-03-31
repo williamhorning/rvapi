@@ -1,12 +1,12 @@
-import { queryParams } from '@jersey/revolt-api-types';
 import { path_name } from './path_name.ts';
-import { type request, RequestError } from './types.ts';
+import { queryParams } from './params.ts';
+import type { routes } from './routes.ts';
 
 /**
- * create a request function
- * @param base_url the base url to use
- * @param headers the headers to use
- * @returns a request function
+ * Create a request function
+ * @param base_url The base URL to use
+ * @param headers The headers to use
+ * @returns A request function
  */
 export function createRequest(
 	base_url: string,
@@ -51,4 +51,40 @@ export function createRequest(
 			throw new RequestError(method, path, params, res);
 		}
 	};
+}
+
+/**
+ * The type of the request function.
+ */
+export type request = <
+	method extends routes['method'],
+	path extends Extract<routes, { method: method }>['path'],
+	params extends Extract<routes, { method: method; path: path }>['params'],
+	response extends Exclude<
+		Extract<routes, { method: method; path: path }>['response'],
+		string
+	>,
+>(
+	method: method,
+	path: path,
+	params: params,
+) => Promise<response>;
+
+/** An error with a request to the API */
+export class RequestError extends Error {
+	/** The cause of the error from the API */
+	override cause: Response;
+	method: string;
+	path: string;
+	params: unknown;
+
+	/** Create an error */
+	constructor(method: string, path: string, params: unknown, cause: Response) {
+		super(`Failed to ${method} ${path}: ${cause.status}`);
+		this.name = 'RequestError';
+		this.cause = cause;
+		this.method = method;
+		this.path = path;
+		this.params = params;
+	}
 }

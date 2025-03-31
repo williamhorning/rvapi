@@ -1,6 +1,6 @@
-import type { Feature } from '@jersey/revolt-api-types';
+import type { Feature, request } from '@jersey/revolt-api-types';
+import { createRequest } from '@jersey/revolt-api-types';
 import { Bonfire } from './bonfire/client.ts';
-import { createRequest, type request } from './delta/mod.ts';
 import { MediaServices } from './media/mod.ts';
 
 /** options used by the clients */
@@ -51,7 +51,7 @@ export interface Client {
  * @param opts the options to use for the client
  */
 export function createClient(opts: ClientOptions): Client {
-	const client = {
+	return {
 		bonfire: new Bonfire({
 			url: opts.ws_url || 'wss://ws.revolt.chat',
 			token: opts.token,
@@ -72,6 +72,4 @@ export function createClient(opts: ClientOptions): Client {
 			...opts.api_headers,
 		}),
 	};
-	setInterval(() => client.bonfire.ping(), 30000); // TODO(jersey): move this to bonfire
-	return client;
 }
