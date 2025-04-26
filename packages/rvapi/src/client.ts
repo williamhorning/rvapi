@@ -17,7 +17,7 @@ export interface ClientOptions {
 	api_headers?: Record<string, string>;
 	/**
 	 * the configuration to use for autumn
-	 * @default { enabled: true, url: 'https://autumn.revolt.chat' }
+	 * @default { enabled: true, url: 'https://cdn.revoltusercontent.com' }
 	 */
 	autumn?: Feature;
 	/**
@@ -63,7 +63,7 @@ export function createClient(opts: ClientOptions): Client {
 			},
 			opts.autumn || {
 				enabled: true,
-				url: 'https://autumn.revolt.chat',
+				url: 'https://cdn.revoltusercontent.com',
 			},
 			opts.token,
 		),
