@@ -215,6 +215,9 @@ export interface components {
 				type: 'IsBot';
 			} | {
 				/** @enum {string} */
+				type: 'IsNotBot';
+			} | {
+				/** @enum {string} */
 				type: 'BotIsPrivate';
 			} | {
 				/** @enum {string} */
@@ -261,6 +264,9 @@ export interface components {
 				type: 'InvalidSession';
 			} | {
 				/** @enum {string} */
+				type: 'InvalidFlagValue';
+			} | {
+				/** @enum {string} */
 				type: 'NotAuthenticated';
 			} | {
 				/** @enum {string} */
@@ -298,6 +304,10 @@ export interface components {
 			} | {
 				/** @enum {string} */
 				type: 'VosoUnavailable';
+			} | {
+				/** @enum {string} */
+				type: 'FeatureDisabled';
+				feature: string;
 			});
 		/** @description User */
 		User: {
@@ -397,10 +407,7 @@ export interface components {
 			/** @description Relationship status with them */
 			status: components['schemas']['RelationshipStatus'];
 		};
-		/**
-		 * @description User's relationship with another user (or themselves)
-		 * @enum {string}
-		 */
+		/** @description User's relationship with another user (or themselves) */
 		RelationshipStatus:
 			| 'None'
 			| 'User'
@@ -416,10 +423,7 @@ export interface components {
 			/** @description Current presence option */
 			presence?: components['schemas']['Presence'] | null;
 		};
-		/**
-		 * @description Presence status
-		 * @enum {string}
-		 */
+		/** @description Presence status */
 		Presence: 'Online' | 'Idle' | 'Focus' | 'Busy' | 'Invisible';
 		/** @description Bot information for if the user is a bot */
 		BotInformation: {
@@ -467,17 +471,16 @@ export interface components {
 			/** @description Attachment Id for background */
 			background?: string | null;
 		};
-		/**
-		 * @description Optional fields on user object
-		 * @enum {string}
-		 */
+		/** @description Optional fields on user object */
 		FieldsUser:
-			| 'Avatar'
-			| 'StatusText'
-			| 'StatusPresence'
-			| 'ProfileContent'
-			| 'ProfileBackground'
-			| 'DisplayName'
+			| (
+				| 'Avatar'
+				| 'StatusText'
+				| 'StatusPresence'
+				| 'ProfileContent'
+				| 'ProfileBackground'
+				| 'DisplayName'
+			)
 			| 'Internal';
 		/** Username Information */
 		DataChangeUsername: {
@@ -798,6 +801,8 @@ export interface components {
 			embeds?: components['schemas']['Embed'][] | null;
 			/** @description Array of user ids mentioned in this message */
 			mentions?: string[] | null;
+			/** @description Array of role ids mentioned in this message */
+			role_mentions?: string[] | null;
 			/** @description Array of message ids this message is replying to */
 			replies?: string[] | null;
 			/** @description Hashmap of emoji IDs to array of user IDs */
@@ -1063,10 +1068,7 @@ export interface components {
 			/** @description Positioning and size */
 			size: components['schemas']['ImageSize'];
 		};
-		/**
-		 * @description Image positioning and size
-		 * @enum {string}
-		 */
+		/** @description Image positioning and size */
 		ImageSize: 'Large' | 'Preview';
 		/** @description Video */
 		Video: {
@@ -1137,6 +1139,8 @@ export interface components {
 			id: string;
 			/** @description Whether this reply should mention the message's author */
 			mention: boolean;
+			/** @description Whether to error if the referenced message doesn't exist. Otherwise, send a message without this reply. Default is true. */
+			fail_if_not_exists?: boolean | null;
 		};
 		/** @description Representation of a text embed before it is sent. */
 		SendableEmbed: {
@@ -1160,7 +1164,6 @@ export interface components {
 		 * @description Message Sort
 		 *
 		 * Sort used for retrieving messages
-		 * @enum {string}
 		 */
 		MessageSort: 'Relevance' | 'Latest' | 'Oldest';
 		/** @description Options for searching for messages */
@@ -1468,10 +1471,7 @@ export interface components {
 			/** @description Whether this channel is age restricted */
 			nsfw?: boolean | null;
 		};
-		/**
-		 * @description Server Channel Type
-		 * @enum {string}
-		 */
+		/** @description Server Channel Type */
 		LegacyServerChannelType: 'Text' | 'Voice';
 		/** @description Response with all members */
 		AllMemberResponse: {
@@ -1731,10 +1731,7 @@ export interface components {
 			/** @description Message context */
 			message_id?: string | null;
 		};
-		/**
-		 * @description Reason for reporting content (message or server)
-		 * @enum {string}
-		 */
+		/** @description Reason for reporting content (message or server) */
 		ContentReportReason:
 			| 'NoneSpecified'
 			| 'Illegal'
@@ -1750,10 +1747,7 @@ export interface components {
 			| 'ScamsFraud'
 			| 'Malware'
 			| 'Harassment';
-		/**
-		 * @description Reason for reporting a user
-		 * @enum {string}
-		 */
+		/** @description Reason for reporting a user */
 		UserReportReason:
 			| 'NoneSpecified'
 			| 'UnsolicitedSpam'
@@ -1923,6 +1917,10 @@ export interface components {
 			token: string;
 			/** @description Display name */
 			name: string;
+			/** @description When the session was last logged in (iso8601 timestamp) */
+			last_seen: string;
+			/** @description What is the session origin? This could be used to differentiate sessions that come from staging/test vs prod, etc. Authifier will set this to None by default. The application must fill it in. */
+			origin?: string | null;
 			/** @description Web Push subscription */
 			subscription?: components['schemas']['WebPushSubscription'] | null;
 		} | {

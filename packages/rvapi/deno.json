@@ -1,10 +1,10 @@
 {
 	"name": "@jersey/rvapi",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"license": "MIT",
 	"exports": "./src/mod.ts",
 	"imports": {
 		"@denosaurs/event": "jsr:@denosaurs/event@^2.0.2",
-		"@jersey/revolt-api-types": "jsr:@jersey/revolt-api-types@0.8.4"
+		"@jersey/revolt-api-types": "jsr:@jersey/revolt-api-types@0.8.6"
 	}
 }
