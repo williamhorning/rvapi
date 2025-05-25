@@ -6,9 +6,9 @@ import {
 } from 'openapi-typescript';
 import { parseArgs } from '@std/cli/parse-args';
 // deno-lint-ignore no-external-import
-import process from "node:process";
+import process from 'node:process';
 // deno-lint-ignore no-external-import
-import { writeFile } from "node:fs/promises"
+import { writeFile } from 'node:fs/promises';
 
 console.info('%cOpenAPI codegen wizard', 'color: blue');
 
