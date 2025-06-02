@@ -55,9 +55,9 @@ export function createRequest(
 		const req_body = ['head', 'get', 'HEAD', 'GET'].includes(method)
 			? undefined
 			: JSON.stringify(body);
-
+		
 		if (['head', 'get', 'HEAD', 'GET'].includes(method)) {
-			headers['Content-Type'] = 'application/json';
+			headers["Content-Type"] = "application/json";
 		}
 
 		const query_string = query.size ? `?${query.toString()}` : '';
@@ -87,10 +87,7 @@ export type request = <
 	method extends routes['method'],
 	path extends Extract<routes, { method: method }>['path'],
 	params extends Extract<routes, { method: method; path: path }>['params'],
-	response extends Exclude<
-		Extract<routes, { method: method; path: path }>['response'],
-		string
-	>,
+	response extends Exclude<Extract<routes, { method: method; path: path }>['response'], string>
 >(
 	method: method,
 	path: path,

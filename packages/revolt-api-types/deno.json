@@ -1,9 +1,9 @@
 {
 	"name": "@jersey/revolt-api-types",
-	"version": "0.8.6",
+	"version": "0.8.7",
 	"license": "MIT",
 	"exports": "./src/mod.ts",
 	"tasks": {
-		"update_types": "deno run -A ../openapi/mod.ts --url https://api.revolt.chat/openapi.json --dest ./src"
+		"update_types": "deno run -A ../openapi/src/mod.ts --url https://api.revolt.chat/openapi.json --dest ./src && deno fmt"
 	}
 }
