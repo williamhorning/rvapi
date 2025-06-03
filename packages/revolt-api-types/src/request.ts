@@ -42,9 +42,9 @@ export function createRequest(
 
 		if (named && params && typeof params === 'object') {
 			const route = queryParams[named as keyof typeof queryParams];
-			const allowed_query = (route as Record<typeof method, string[]>)[method];
+			const allowed_query = (route as Record<typeof method, string[] | undefined>)[method];
 			for (const param of Object.keys(params)) {
-				if (allowed_query.includes(param)) {
+				if (allowed_query?.includes(param)) {
 					query.append(param, (params as Record<string, string>)[param]);
 				} else {
 					body[param] = (params as Record<string, string>)[param];
