@@ -90,6 +90,7 @@ export interface openapi_response {
 
 interface openapi_components {
 	schemas?: Record<string, openapi_schema_object>;
+	responses?: Record<string, openapi_response>;
 }
 
 export type openapi_schema_object =

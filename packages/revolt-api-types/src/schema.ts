@@ -257,25 +257,25 @@ export interface User {
 	/** @description Discriminator */
 	discriminator: string;
 	/** @description Display name */
-	display_name?: string | null;
+	display_name?: string;
 	/** @description Avatar attachment */
-	avatar?: (File) | null;
+	avatar?: File;
 	/** @description Relationships with other users */
-	relations: (Relationship)[];
+	relations?: (Relationship)[];
 	/** @description Bitfield of user badges
 
 https://docs.rs/revolt-models/latest/revolt_models/v0/enum.UserBadges.html */
-	badges: number;
+	badges?: number;
 	/** @description User's current status */
-	status?: (UserStatus) | null;
+	status?: UserStatus;
 	/** @description Enum of user flags
 
 https://docs.rs/revolt-models/latest/revolt_models/v0/enum.UserFlags.html */
-	flags: number;
+	flags?: number;
 	/** @description Whether this user is privileged */
-	privileged: boolean;
+	privileged?: boolean;
 	/** @description Bot information */
-	bot?: (BotInformation) | null;
+	bot?: BotInformation;
 	/** @description Current session user's relationship with this user */
 	relationship: RelationshipStatus;
 	/** @description Whether this user is currently online */
@@ -299,17 +299,17 @@ export interface File {
 	/** @description Size of this file (in bytes) */
 	size: number;
 	/** @description Whether this file was deleted */
-	deleted?: boolean | null;
+	deleted?: boolean;
 	/** @description Whether this file was reported */
-	reported?: boolean | null;
+	reported?: boolean;
 	/** @description message_id */
-	message_id?: string | null;
+	message_id?: string;
 	/** @description user_id */
-	user_id?: string | null;
+	user_id?: string;
 	/** @description server_id */
-	server_id?: string | null;
+	server_id?: string;
 	/** @description Id of the object this file is associated with */
-	object_id?: string | null;
+	object_id?: string;
 }
 
 /**
@@ -358,9 +358,9 @@ export type RelationshipStatus =
  */
 export interface UserStatus {
 	/** @description Custom status text */
-	text?: string | null;
+	text?: string;
 	/** @description Current presence option */
-	presence?: (Presence) | null;
+	presence?: Presence;
 }
 
 /**
@@ -394,19 +394,19 @@ export interface FlagResponse {
  */
 export interface DataEditUser {
 	/** @description New display name */
-	display_name?: string | null;
+	display_name?: string;
 	/** @description Attachment Id for avatar */
-	avatar?: string | null;
+	avatar?: string;
 	/** @description New user status */
-	status?: (UserStatus) | null;
+	status?: UserStatus;
 	/** @description New user profile data
 
 This is applied as a partial. */
-	profile?: (DataUserProfile) | null;
+	profile?: DataUserProfile;
 	/** @description Bitfield of user badges */
-	badges?: number | null;
+	badges?: number;
 	/** @description Enum of user flags */
-	flags?: number | null;
+	flags?: number;
 	/** @description Fields to remove from user object */
 	remove?: (FieldsUser)[] | null;
 }
@@ -416,9 +416,9 @@ This is applied as a partial. */
  */
 export interface DataUserProfile {
 	/** @description Text to set as user profile description */
-	content?: string | null;
+	content?: string;
 	/** @description Attachment Id for background */
-	background?: string | null;
+	background?: string;
 }
 
 /**
@@ -448,9 +448,9 @@ export interface DataChangeUsername {
  */
 export interface UserProfile {
 	/** @description Text content on user's profile */
-	content?: string | null;
+	content?: string;
 	/** @description Background visible on user's profile */
-	background?: (File) | null;
+	background?: File;
 }
 
 /**
@@ -465,39 +465,39 @@ export type Channel = {
 	_id: string;
 	active: boolean;
 	recipients: (string)[];
-	last_message_id?: string | null;
+	last_message_id?: string;
 } | {
 	channel_type: 'Group';
 	_id: string;
 	name: string;
 	owner: string;
-	description?: string | null;
+	description?: string;
 	recipients: (string)[];
-	icon?: (File) | null;
-	last_message_id?: string | null;
-	permissions?: number | null;
-	nsfw: boolean;
+	icon?: File;
+	last_message_id?: string;
+	permissions?: number;
+	nsfw?: boolean;
 } | {
 	channel_type: 'TextChannel';
 	_id: string;
 	server: string;
 	name: string;
-	description?: string | null;
-	icon?: (File) | null;
-	last_message_id?: string | null;
-	default_permissions?: (OverrideField) | null;
-	role_permissions: Record<string, OverrideField>;
-	nsfw: boolean;
+	description?: string;
+	icon?: File;
+	last_message_id?: string;
+	default_permissions?: OverrideField;
+	role_permissions?: Record<string, OverrideField>;
+	nsfw?: boolean;
 } | {
 	channel_type: 'VoiceChannel';
 	_id: string;
 	server: string;
 	name: string;
-	description?: string | null;
-	icon?: (File) | null;
-	default_permissions?: (OverrideField) | null;
-	role_permissions: Record<string, OverrideField>;
-	nsfw: boolean;
+	description?: string;
+	icon?: File;
+	default_permissions?: OverrideField;
+	role_permissions?: Record<string, OverrideField>;
+	nsfw?: boolean;
 };
 
 /**
@@ -543,17 +543,17 @@ export interface BotWithUserResponse {
 	/** @description Whether the bot is public (may be invited by anyone) */
 	public: boolean;
 	/** @description Whether to enable analytics */
-	analytics: boolean;
+	analytics?: boolean;
 	/** @description Whether this bot should be publicly discoverable */
-	discoverable: boolean;
+	discoverable?: boolean;
 	/** @description Reserved; URL for handling interactions */
-	interactions_url: string;
+	interactions_url?: string;
 	/** @description URL for terms of service */
-	terms_of_service_url: string;
+	terms_of_service_url?: string;
 	/** @description URL for privacy policy */
-	privacy_policy_url: string;
+	privacy_policy_url?: string;
 	/** @description Enum of bot flags */
-	flags: number;
+	flags?: number;
 }
 
 /**
@@ -582,9 +582,9 @@ export interface PublicBot {
 	/** @description Bot Username */
 	username: string;
 	/** @description Profile Avatar */
-	avatar: string;
+	avatar?: string;
 	/** @description Profile Description */
-	description: string;
+	description?: string;
 }
 
 /**
@@ -610,17 +610,17 @@ export interface Bot {
 	/** @description Whether the bot is public (may be invited by anyone) */
 	public: boolean;
 	/** @description Whether to enable analytics */
-	analytics: boolean;
+	analytics?: boolean;
 	/** @description Whether this bot should be publicly discoverable */
-	discoverable: boolean;
+	discoverable?: boolean;
 	/** @description Reserved; URL for handling interactions */
-	interactions_url: string;
+	interactions_url?: string;
 	/** @description URL for terms of service */
-	terms_of_service_url: string;
+	terms_of_service_url?: string;
 	/** @description URL for privacy policy */
-	privacy_policy_url: string;
+	privacy_policy_url?: string;
 	/** @description Enum of bot flags */
-	flags: number;
+	flags?: number;
 }
 
 /**
@@ -642,15 +642,15 @@ export interface OwnedBotsResponse {
  */
 export interface DataEditBot {
 	/** @description Bot username */
-	name?: string | null;
+	name?: string;
 	/** @description Whether the bot can be added by anyone */
-	public?: boolean | null;
+	public?: boolean;
 	/** @description Whether analytics should be gathered for this bot
 
 Must be enabled in order to show up on [Revolt Discover](https://rvlt.gg). */
-	analytics?: boolean | null;
+	analytics?: boolean;
 	/** @description Interactions URL */
-	interactions_url?: string | null;
+	interactions_url?: string;
 	/** @description Fields to remove from bot object */
 	remove?: (FieldsBot)[] | null;
 }
@@ -665,19 +665,19 @@ export type FieldsBot = 'Token' | 'InteractionsURL';
  */
 export interface DataEditChannel {
 	/** @description Channel name */
-	name?: string | null;
+	name?: string;
 	/** @description Channel description */
-	description?: string | null;
+	description?: string;
 	/** @description Group owner */
-	owner?: string | null;
+	owner?: string;
 	/** @description Icon
 
 Provide an Autumn attachment Id. */
-	icon?: string | null;
+	icon?: string;
 	/** @description Whether this channel is age-restricted */
-	nsfw?: boolean | null;
+	nsfw?: boolean;
 	/** @description Whether this channel is archived */
-	archived?: boolean | null;
+	archived?: boolean;
 	/** @description Fields to remove from channel */
 	remove?: (FieldsChannel)[] | null;
 }
@@ -710,25 +710,25 @@ export interface Message {
 	/** @description Unique Id */
 	_id: string;
 	/** @description Unique value generated by client sending this message */
-	nonce?: string | null;
+	nonce?: string;
 	/** @description Id of the channel this message was sent in */
 	channel: string;
 	/** @description Id of the user or webhook that sent this message */
 	author: string;
 	/** @description The user that sent this message */
-	user?: (User) | null;
+	user?: User;
 	/** @description The member that sent this message */
-	member?: (Member) | null;
+	member?: Member;
 	/** @description The webhook that sent this message */
-	webhook?: (MessageWebhook) | null;
+	webhook?: MessageWebhook;
 	/** @description Message content */
-	content?: string | null;
+	content?: string;
 	/** @description System message */
-	system?: (SystemMessage) | null;
+	system?: SystemMessage;
 	/** @description Array of attachments */
 	attachments?: (File)[] | null;
 	/** @description Time at which this message was last edited */
-	edited?: (ISO8601Timestamp) | null;
+	edited?: ISO8601Timestamp;
 	/** @description Attached embeds to this message */
 	embeds?: (Embed)[] | null;
 	/** @description Array of user ids mentioned in this message */
@@ -738,17 +738,17 @@ export interface Message {
 	/** @description Array of message ids this message is replying to */
 	replies?: (string)[] | null;
 	/** @description Hashmap of emoji IDs to array of user IDs */
-	reactions: Record<string, (string)[]>;
+	reactions?: Record<string, (string)[]>;
 	/** @description Information about how this message should be interacted with */
-	interactions: Interactions;
+	interactions?: Interactions;
 	/** @description Name and / or avatar overrides for this message */
-	masquerade?: (Masquerade) | null;
+	masquerade?: Masquerade;
 	/** @description Whether or not the message in pinned */
-	pinned?: boolean | null;
+	pinned?: boolean;
 	/** @description Bitfield of message flags
 
 https://docs.rs/revolt-models/latest/revolt_models/v0/enum.MessageFlags.html */
-	flags: number;
+	flags?: number;
 }
 
 /**
@@ -760,13 +760,13 @@ export interface Member {
 	/** @description Time at which this user joined the server */
 	joined_at: ISO8601Timestamp;
 	/** @description Member's nickname */
-	nickname?: string | null;
+	nickname?: string;
 	/** @description Avatar attachment */
-	avatar?: (File) | null;
+	avatar?: File;
 	/** @description Member's roles */
-	roles: (string)[];
+	roles?: (string)[];
 	/** @description Timestamp this member is timed out until */
-	timeout?: (ISO8601Timestamp) | null;
+	timeout?: ISO8601Timestamp;
 }
 
 /**
@@ -791,7 +791,7 @@ export interface MessageWebhook {
 	/** @description name */
 	name: string;
 	/** @description avatar */
-	avatar?: string | null;
+	avatar?: string;
 }
 
 /**
@@ -849,16 +849,16 @@ export type SystemMessage = {
  */
 export type Embed = {
 	type: 'Website';
-	url?: string | null;
-	original_url?: string | null;
-	special?: (Special) | null;
-	title?: string | null;
-	description?: string | null;
-	image?: (Image) | null;
-	video?: (Video) | null;
-	site_name?: string | null;
-	icon_url?: string | null;
-	colour?: string | null;
+	url?: string;
+	original_url?: string;
+	special?: Special;
+	title?: string;
+	description?: string;
+	image?: Image;
+	video?: Video;
+	site_name?: string;
+	icon_url?: string;
+	colour?: string;
 } | {
 	type: 'Image';
 	url: string;
@@ -872,12 +872,12 @@ export type Embed = {
 	height: number;
 } | {
 	type: 'Text';
-	icon_url?: string | null;
-	url?: string | null;
-	title?: string | null;
-	description?: string | null;
-	media?: (File) | null;
-	colour?: string | null;
+	icon_url?: string;
+	url?: string;
+	title?: string;
+	description?: string;
+	media?: File;
+	colour?: string;
 } | {
 	type: 'None';
 };
@@ -892,7 +892,7 @@ export type Special = {
 } | {
 	type: 'YouTube';
 	id: string;
-	timestamp?: string | null;
+	timestamp?: string;
 } | {
 	type: 'Lightspeed';
 	content_type: LightspeedType;
@@ -914,7 +914,7 @@ export type Special = {
 } | {
 	type: 'AppleMusic';
 	album_id: string;
-	track_id?: string | null;
+	track_id?: string;
 } | {
 	type: 'Streamable';
 	id: string;
@@ -975,7 +975,7 @@ export interface Interactions {
 	/** @description Whether reactions should be restricted to the given list
 
 Can only be set to true if reactions list is of at least length 1 */
-	restrict_reactions: boolean;
+	restrict_reactions?: boolean;
 }
 
 /**
@@ -983,13 +983,13 @@ Can only be set to true if reactions list is of at least length 1 */
  */
 export interface Masquerade {
 	/** @description Replace the display name shown on this message */
-	name?: string | null;
+	name?: string;
 	/** @description Replace the avatar shown on this message (URL to image file) */
-	avatar?: string | null;
+	avatar?: string;
 	/** @description Replace the display role colour shown on this message
 
 Must have `ManageRole` permission to use */
-	colour?: string | null;
+	colour?: string;
 }
 
 /**
@@ -999,9 +999,9 @@ export interface DataMessageSend {
 	/** @description Unique token to prevent duplicate message sending
 
 **This is deprecated and replaced by `Idempotency-Key`!** */
-	nonce?: string | null;
+	nonce?: string;
 	/** @description Message content to send */
-	content?: string | null;
+	content?: string;
 	/** @description Attachments to include in message */
 	attachments?: (string)[] | null;
 	/** @description Messages to reply to */
@@ -1011,13 +1011,13 @@ export interface DataMessageSend {
 Text embed content contributes to the content length cap */
 	embeds?: (SendableEmbed)[] | null;
 	/** @description Masquerade to apply to this message */
-	masquerade?: (Masquerade) | null;
+	masquerade?: Masquerade;
 	/** @description Information about how this message should be interacted with */
-	interactions?: (Interactions) | null;
+	interactions?: Interactions;
 	/** @description Bitfield of message flags
 
 https://docs.rs/revolt-models/latest/revolt_models/v0/enum.MessageFlags.html */
-	flags?: number | null;
+	flags?: number;
 }
 
 /**
@@ -1029,7 +1029,7 @@ export interface ReplyIntent {
 	/** @description Whether this reply should mention the message's author */
 	mention: boolean;
 	/** @description Whether to error if the referenced message doesn't exist. Otherwise, send a message without this reply. Default is true. */
-	fail_if_not_exists?: boolean | null;
+	fail_if_not_exists?: boolean;
 }
 
 /**
@@ -1037,17 +1037,17 @@ export interface ReplyIntent {
  */
 export interface SendableEmbed {
 	/** @description icon_url */
-	icon_url?: string | null;
+	icon_url?: string;
 	/** @description url */
-	url?: string | null;
+	url?: string;
 	/** @description title */
-	title?: string | null;
+	title?: string;
 	/** @description description */
-	description?: string | null;
+	description?: string;
 	/** @description media */
-	media?: string | null;
+	media?: string;
 	/** @description colour */
-	colour?: string | null;
+	colour?: string;
 }
 
 /**
@@ -1073,21 +1073,21 @@ export interface DataMessageSearch {
 	/** @description Full-text search query
 
 See [MongoDB documentation](https://docs.mongodb.com/manual/text-search/#-text-operator) for more information. */
-	query?: string | null;
+	query?: string;
 	/** @description Whether to only search for pinned messages, cannot be sent with `query`. */
-	pinned?: boolean | null;
+	pinned?: boolean;
 	/** @description Maximum number of messages to fetch */
-	limit?: number | null;
+	limit?: number;
 	/** @description Message id before which messages should be fetched */
-	before?: string | null;
+	before?: string;
 	/** @description Message id after which messages should be fetched */
-	after?: string | null;
+	after?: string;
 	/** @description Message sort direction
 
 By default, it will be sorted by latest. */
-	sort: MessageSort;
+	sort?: MessageSort;
 	/** @description Whether to include user (and member, if server channel) objects */
-	include_users?: boolean | null;
+	include_users?: boolean;
 }
 
 /**
@@ -1095,7 +1095,7 @@ By default, it will be sorted by latest. */
  */
 export interface DataEditMessage {
 	/** @description New message content */
-	content?: string | null;
+	content?: string;
 	/** @description Embeds to include in the message */
 	embeds?: (SendableEmbed)[] | null;
 }
@@ -1115,15 +1115,15 @@ export interface DataCreateGroup {
 	/** @description Group name */
 	name: string;
 	/** @description Group description */
-	description?: string | null;
+	description?: string;
 	/** @description Group icon */
-	icon?: string | null;
+	icon?: string;
 	/** @description Array of user IDs to add to the group
 
 Must be friends with these users. */
-	users: (string)[];
+	users?: (string)[];
 	/** @description Whether this group is age-restricted */
-	nsfw?: boolean | null;
+	nsfw?: boolean;
 }
 
 /**
@@ -1170,7 +1170,7 @@ export interface Webhook {
 	/** @description The name of the webhook */
 	name: string;
 	/** @description The avatar of the webhook */
-	avatar?: (File) | null;
+	avatar?: File;
 	/** @description User that created this webhook */
 	creator_id: string;
 	/** @description The channel this webhook belongs to */
@@ -1178,7 +1178,7 @@ export interface Webhook {
 	/** @description The permissions for the webhook */
 	permissions: number;
 	/** @description The private token for the webhook */
-	token?: string | null;
+	token?: string;
 }
 
 /**
@@ -1188,7 +1188,7 @@ export interface CreateWebhookBody {
 	/** @description name */
 	name: string;
 	/** @description avatar */
-	avatar?: string | null;
+	avatar?: string;
 }
 
 /**
@@ -1212,29 +1212,29 @@ export interface Server {
 	/** @description Name of the server */
 	name: string;
 	/** @description Description for the server */
-	description?: string | null;
+	description?: string;
 	/** @description Channels within this server */
 	channels: (string)[];
 	/** @description Categories for this server */
 	categories?: (Category)[] | null;
 	/** @description Configuration for sending system event messages */
-	system_messages?: (SystemMessageChannels) | null;
+	system_messages?: SystemMessageChannels;
 	/** @description Roles for this server */
-	roles: Record<string, Role>;
+	roles?: Record<string, Role>;
 	/** @description Default set of server and channel permissions */
 	default_permissions: number;
 	/** @description Icon attachment */
-	icon?: (File) | null;
+	icon?: File;
 	/** @description Banner attachment */
-	banner?: (File) | null;
+	banner?: File;
 	/** @description Bitfield of server flags */
-	flags: number;
+	flags?: number;
 	/** @description Whether this server is flagged as not safe for work */
-	nsfw: boolean;
+	nsfw?: boolean;
 	/** @description Whether to enable analytics */
-	analytics: boolean;
+	analytics?: boolean;
 	/** @description Whether this server should be publicly discoverable */
-	discoverable: boolean;
+	discoverable?: boolean;
 }
 
 /**
@@ -1254,13 +1254,13 @@ export interface Category {
  */
 export interface SystemMessageChannels {
 	/** @description ID of channel to send user join messages in */
-	user_joined?: string | null;
+	user_joined?: string;
 	/** @description ID of channel to send user left messages in */
-	user_left?: string | null;
+	user_left?: string;
 	/** @description ID of channel to send user kicked messages in */
-	user_kicked?: string | null;
+	user_kicked?: string;
 	/** @description ID of channel to send user banned messages in */
-	user_banned?: string | null;
+	user_banned?: string;
 }
 
 /**
@@ -1274,11 +1274,11 @@ export interface Role {
 	/** @description Colour used for this role
 
 This can be any valid CSS colour */
-	colour?: string | null;
+	colour?: string;
 	/** @description Whether this role should be shown separately on the member sidebar */
-	hoist: boolean;
+	hoist?: boolean;
 	/** @description Ranking of this role */
-	rank: number;
+	rank?: number;
 }
 
 /**
@@ -1288,9 +1288,9 @@ export interface DataCreateServer {
 	/** @description Server name */
 	name: string;
 	/** @description Server description */
-	description?: string | null;
+	description?: string;
 	/** @description Whether this server is age-restricted */
-	nsfw?: boolean | null;
+	nsfw?: boolean;
 }
 
 /**
@@ -1301,17 +1301,17 @@ export type FetchServerResponse = Server | {
 	_id: string;
 	owner: string;
 	name: string;
-	description?: string | null;
+	description?: string;
 	categories?: (Category)[] | null;
-	system_messages?: (SystemMessageChannels) | null;
-	roles: Record<string, Role>;
+	system_messages?: SystemMessageChannels;
+	roles?: Record<string, Role>;
 	default_permissions: number;
-	icon?: (File) | null;
-	banner?: (File) | null;
-	flags: number;
-	nsfw: boolean;
-	analytics: boolean;
-	discoverable: boolean;
+	icon?: File;
+	banner?: File;
+	flags?: number;
+	nsfw?: boolean;
+	analytics?: boolean;
+	discoverable?: boolean;
 };
 
 /**
@@ -1319,25 +1319,25 @@ export type FetchServerResponse = Server | {
  */
 export interface DataEditServer {
 	/** @description Server name */
-	name?: string | null;
+	name?: string;
 	/** @description Server description */
-	description?: string | null;
+	description?: string;
 	/** @description Attachment Id for icon */
-	icon?: string | null;
+	icon?: string;
 	/** @description Attachment Id for banner */
-	banner?: string | null;
+	banner?: string;
 	/** @description Category structure for server */
 	categories?: (Category)[] | null;
 	/** @description System message configuration */
-	system_messages?: (SystemMessageChannels) | null;
+	system_messages?: SystemMessageChannels;
 	/** @description Bitfield of server flags */
-	flags?: number | null;
+	flags?: number;
 	/** @description Whether this server is public and should show up on [Revolt Discover](https://rvlt.gg) */
-	discoverable?: boolean | null;
+	discoverable?: boolean;
 	/** @description Whether analytics should be collected for this server
 
 Must be enabled in order to show up on [Revolt Discover](https://rvlt.gg). */
-	analytics?: boolean | null;
+	analytics?: boolean;
 	/** @description Fields to remove from server object */
 	remove?: (FieldsServer)[] | null;
 }
@@ -1357,13 +1357,13 @@ export type FieldsServer =
  */
 export interface DataCreateServerChannel {
 	/** @description Channel type */
-	type: LegacyServerChannelType;
+	type?: LegacyServerChannelType;
 	/** @description Channel name */
 	name: string;
 	/** @description Channel description */
-	description?: string | null;
+	description?: string;
 	/** @description Whether this channel is age restricted */
-	nsfw?: boolean | null;
+	nsfw?: boolean;
 }
 
 /**
@@ -1394,13 +1394,13 @@ export type MemberResponse = Member | {
  */
 export interface DataMemberEdit {
 	/** @description Member nickname */
-	nickname?: string | null;
+	nickname?: string;
 	/** @description Attachment Id to set for avatar */
-	avatar?: string | null;
+	avatar?: string;
 	/** @description Array of role ids */
 	roles?: (string)[] | null;
 	/** @description Timestamp this member is timed out until */
-	timeout?: (ISO8601Timestamp) | null;
+	timeout?: ISO8601Timestamp;
 	/** @description Fields to remove from channel object */
 	remove?: (FieldsMember)[] | null;
 }
@@ -1427,7 +1427,7 @@ export interface ServerBan {
 	/** @description Unique member id */
 	_id: MemberCompositeKey;
 	/** @description Reason for ban creation */
-	reason?: string | null;
+	reason?: string;
 }
 
 /**
@@ -1435,7 +1435,7 @@ export interface ServerBan {
  */
 export interface DataBanCreate {
 	/** @description Ban reason */
-	reason?: string | null;
+	reason?: string;
 }
 
 /**
@@ -1459,7 +1459,7 @@ export interface BannedUser {
 	/** @description Discriminator of the banned user */
 	discriminator: string;
 	/** @description Avatar of the banned user */
-	avatar?: (File) | null;
+	avatar?: File;
 }
 
 /**
@@ -1481,7 +1481,7 @@ export interface DataCreateRole {
 	/** @description Ranking position
 
 Smaller values take priority. */
-	rank?: number | null;
+	rank?: number;
 }
 
 /**
@@ -1489,15 +1489,15 @@ Smaller values take priority. */
  */
 export interface DataEditRole {
 	/** @description Role name */
-	name?: string | null;
+	name?: string;
 	/** @description Role colour */
-	colour?: string | null;
+	colour?: string;
 	/** @description Whether this role should be displayed separately */
-	hoist?: boolean | null;
+	hoist?: boolean;
 	/** @description Ranking position
 
 Smaller values take priority. */
-	rank?: number | null;
+	rank?: number;
 	/** @description Fields to remove from role object */
 	remove?: (FieldsRole)[] | null;
 }
@@ -1536,9 +1536,9 @@ export interface Emoji {
 	/** @description Emoji name */
 	name: string;
 	/** @description Whether the emoji is animated */
-	animated: boolean;
+	animated?: boolean;
 	/** @description Whether the emoji is marked as nsfw */
-	nsfw: boolean;
+	nsfw?: boolean;
 }
 
 /**
@@ -1559,23 +1559,23 @@ export type InviteResponse = {
 	code: string;
 	server_id: string;
 	server_name: string;
-	server_icon?: (File) | null;
-	server_banner?: (File) | null;
-	server_flags?: number | null;
+	server_icon?: File;
+	server_banner?: File;
+	server_flags?: number;
 	channel_id: string;
 	channel_name: string;
-	channel_description?: string | null;
+	channel_description?: string;
 	user_name: string;
-	user_avatar?: (File) | null;
+	user_avatar?: File;
 	member_count: number;
 } | {
 	type: 'Group';
 	code: string;
 	channel_id: string;
 	channel_name: string;
-	channel_description?: string | null;
+	channel_description?: string;
 	user_name: string;
-	user_avatar?: (File) | null;
+	user_avatar?: File;
 };
 
 /**
@@ -1600,7 +1600,7 @@ export interface DataCreateEmoji {
 	/** @description Parent information */
 	parent: EmojiParent;
 	/** @description Whether the emoji is mature */
-	nsfw: boolean;
+	nsfw?: boolean;
 }
 
 /**
@@ -1610,7 +1610,7 @@ export interface DataReportContent {
 	/** @description Content being reported */
 	content: ReportedContent;
 	/** @description Additional report description */
-	additional_context: string;
+	additional_context?: string;
 }
 
 /**
@@ -1628,7 +1628,7 @@ export type ReportedContent = {
 	type: 'User';
 	id: string;
 	report_reason: UserReportReason;
-	message_id?: string | null;
+	message_id?: string;
 };
 
 /**
@@ -1723,9 +1723,9 @@ export interface DataCreateAccount {
 	/** @description Password */
 	password: string;
 	/** @description Invite code */
-	invite?: string | null;
+	invite?: string;
 	/** @description Captcha verification code */
-	captcha?: string | null;
+	captcha?: string;
 }
 
 /**
@@ -1735,7 +1735,7 @@ export interface DataResendVerification {
 	/** @description Email associated with the account */
 	email: string;
 	/** @description Captcha verification code */
-	captcha?: string | null;
+	captcha?: string;
 }
 
 /**
@@ -1798,7 +1798,7 @@ export interface MFATicket {
 	/** @description Whether this ticket is authorised (can be used to log a user in) */
 	authorised: boolean;
 	/** @description TOTP code at time of ticket creation */
-	last_totp_code?: string | null;
+	last_totp_code?: string;
 }
 
 /**
@@ -1810,7 +1810,7 @@ export interface DataPasswordReset {
 	/** @description New password */
 	password: string;
 	/** @description Whether to logout all sessions */
-	remove_sessions: boolean;
+	remove_sessions?: boolean;
 }
 
 /**
@@ -1820,7 +1820,7 @@ export interface DataSendPasswordReset {
 	/** @description Email associated with the account */
 	email: string;
 	/** @description Captcha verification code */
-	captcha?: string | null;
+	captcha?: string;
 }
 
 /**
@@ -1833,8 +1833,8 @@ export type ResponseLogin = {
 	token: string;
 	name: string;
 	last_seen: string;
-	origin?: string | null;
-	subscription?: (WebPushSubscription) | null;
+	origin?: string;
+	subscription?: WebPushSubscription;
 } | {
 	result: 'MFA';
 	ticket: string;
@@ -1867,11 +1867,11 @@ export type MFAMethod = 'Password' | 'Recovery' | 'Totp';
 export type DataLogin = {
 	email: string;
 	password: string;
-	friendly_name?: string | null;
+	friendly_name?: string;
 } | {
 	mfa_ticket: string;
-	mfa_response?: (MFAResponse) | null;
-	friendly_name?: string | null;
+	mfa_response?: MFAResponse;
+	friendly_name?: string;
 };
 
 /**
@@ -1960,9 +1960,9 @@ export interface ChannelUnread {
 	/** @description Composite key pointing to a user's view of a channel */
 	_id: ChannelCompositeKey;
 	/** @description Id of the last message read in this channel by a user */
-	last_id?: string | null;
+	last_id?: string;
 	/** @description Array of message ids that mention the user */
-	mentions: (string)[];
+	mentions?: (string)[];
 }
 
 /**

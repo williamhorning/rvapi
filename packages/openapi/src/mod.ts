@@ -8,14 +8,16 @@ import { resolve } from 'node:path';
 import { generate_paths } from './paths.ts';
 import { generate_types } from './schema.ts';
 import type { openapi_schema } from './types.ts';
+import { get_response_type } from './responses.ts';
 
 const args = parseArgs(argv.splice(2), {
 	string: ['dest', 'url'],
-	boolean: ['skip_requests', 'skip_routes'],
+	boolean: ['skip_requests', 'skip_routes', 'include_responses'],
 	default: {
 		dest: '.',
 		skip_routes: false,
 		skip_requests: false,
+		include_responses: false,
 	},
 });
 
@@ -68,6 +70,10 @@ if (!args.skip_routes) {
 	types_file += paths.operations;
 }
 
+if (args.include_responses && schema.components?.responses) {
+	types_file += get_response_type(schema.components.responses);
+}
+
 await writeFile(`${args.dest}/schema.ts`, types_file, 'utf-8');
 
 if (!args.skip_requests) {
@@ -79,7 +85,7 @@ export type { routes } from './routes.ts';
 export type * from './schema.ts';
 export * from './request.ts';
 `,
-		'utf-8'
+		'utf-8',
 	);
 	await writeFile(
 		resolve(`${args.dest}/request.ts`),
@@ -201,6 +207,6 @@ export class RequestError extends Error {
 	}
 }
 `,
-		'utf-8'
+		'utf-8',
 	);
 }

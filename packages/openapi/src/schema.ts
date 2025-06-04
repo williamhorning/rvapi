@@ -14,7 +14,7 @@ function get_enum(vals?: unknown[]): string | undefined {
 function composite(schema: openapi_schema_object): string[] {
 	const pick = (k: 'oneOf' | 'anyOf' | 'allOf', sep: string) =>
 		schema[k]?.length
-			? `(${schema[k].map(get_type).join(` ${sep} `)})`
+			? `(${schema[k].map((i) => get_type(i)).join(` ${sep} `)})`
 			: undefined;
 	return [
 		pick('oneOf', '|'),
@@ -25,6 +25,7 @@ function composite(schema: openapi_schema_object): string[] {
 
 export function get_type(
 	item: openapi_reference | openapi_schema_object,
+	is_required = true,
 ): string {
 	if ('$ref' in item) return ref(item.$ref);
 
@@ -41,7 +42,7 @@ export function get_type(
 			? (() => {
 				if (!item.items) return 'unknown[]';
 				const items = Array.isArray(item.items)
-					? item.items.map(get_type).join(' | ')
+					? item.items.map((i) => get_type(i)).join(' | ')
 					: get_type(item.items);
 				return (item as openapi_schema_object).nullable
 					? `(${items})[] | null`
@@ -50,12 +51,19 @@ export function get_type(
 			: item.type === 'object'
 			? (() => {
 				if (item.properties) {
+					const required = item.required || [];
+
 					const props = Object.entries(item.properties)
 						.map(
-							([k, v]) =>
-								`  ${k}${(v as openapi_schema_object).nullable ? '?' : ''}: ${
-									get_type(v)
-								};`,
+							([k, v]) => {
+								const schema = v as openapi_schema_object;
+								const prop_required = required.includes(k);
+								const optional = !prop_required || schema.nullable;
+
+								return `  ${k}${optional ? '?' : ''}: ${
+									get_type(v, prop_required)
+								};`;
+							},
 						)
 						.join('\n');
 					return `{\n${props}\n}`;
@@ -82,14 +90,18 @@ export function get_type(
 			: [base, ...comps].join(' & ');
 	}
 
-	if ((item as openapi_schema_object).nullable && item.type !== 'array') {
+	if (
+		(item as openapi_schema_object).nullable &&
+		item.type !== 'array' &&
+		is_required
+	) {
 		base = `${base} | null`;
 	}
 
 	return base;
 }
 
-function handle_schema(
+export function handle_schema(
 	name: string,
 	schema: openapi_schema_object,
 ): string {
@@ -100,16 +112,19 @@ function handle_schema(
 	name = name.replaceAll(' ', '').replaceAll('%20', '');
 
 	if (schema.type === 'object' && schema.properties) {
+		const required = schema.required || [];
+
 		const body = Object.entries(schema.properties)
 			.map(([property_name, property_schema]) => {
-				const property_schema_object = property_schema as openapi_schema_object;
-				const is_nullable = property_schema_object.nullable;
-				return `  /** @description ${
-					property_schema_object.description || property_schema_object.title ||
-					property_name
-				} */\n  ${property_name}${is_nullable ? '?' : ''}: ${
-					get_type(property_schema)
-				};`;
+				const schema = property_schema as openapi_schema_object;
+				const optional = !required.includes(property_name) ||
+					schema.nullable;
+
+				const description = schema.description || schema.title || property_name;
+
+				return `  /** @description ${description} */\n  ${property_name}${
+					optional ? '?' : ''
+				}: ${get_type(property_schema, required.includes(property_name))};`;
 			})
 			.join('\n');
 		const comps = composite(schema);
